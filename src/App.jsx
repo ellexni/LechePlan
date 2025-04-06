@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import { SignUp, Login, Homepage, Calendar, Chart, Courses, Plans } from './pages'
 import { Route, Routes } from 'react-router-dom'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
 
