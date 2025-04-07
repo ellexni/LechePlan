@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { SignUp, Login, Homepage, Calendar, Chart, Courses, Plans } from './pages'
+import { SignUp, Login, Homepage, Calendar, Courses, Plans } from './pages'
 import { Route, Routes } from 'react-router-dom'
-import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
 
@@ -27,7 +26,6 @@ function App() {
         <Route path={'/'} element={<Login setToken={setToken}/>}/>
         { token ? <Route path={'/homepage'} element={<Homepage token={token}/>}/> : ""}
         { token ? <Route path={'/calendar'} element={<Calendar token={token}/>}/> : ""}
-        { token ? <Route path={'/chart'} element={<Chart token={token}/>}/> : ""}
         { token ? <Route path={'/courses'} element={<Courses token={token}/>}/> : ""}
         { token ? <Route path={'/plans'} element={<Plans token={token}/>}/> : ""}
       </Routes>

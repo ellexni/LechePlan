@@ -1,7 +1,10 @@
-function Courses() {
+import Navbar from "../components/Navbar"
+
+function Courses({token}) {
     return (
         <div>
-            Courses
+            <Navbar />
+            <h3>{token.user.user_metadata.full_name}'s Courses</h3>
         </div>
     )
 }

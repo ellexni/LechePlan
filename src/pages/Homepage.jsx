@@ -12,6 +12,7 @@ function Homepage({token}) {
   return (
     
     <div>
+        <Navbar />
         <h3>Welcome back, {token.user.user_metadata.full_name}</h3>
         <button onClick={handleLogout}>Logout</button>
 

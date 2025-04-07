@@ -1,7 +1,10 @@
-function Calendar() {
+import Navbar from "../components/Navbar"
+
+function Calendar({token}) {
     return (
         <div>
-            Calendar
+            <Navbar />
+            <h3>{token.user.user_metadata.full_name}'s Calendar</h3>
         </div>
     )
 }
