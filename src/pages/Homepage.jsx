@@ -4,31 +4,55 @@ import { supabase } from "../client"
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs"
 import { FaCheckCircle } from "react-icons/fa"; // if incomplete, show this
 import { FaCircleXmark } from "react-icons/fa6"; // if complete, show this
+import Modal from "../components/Modal";
 
 function Homepage({token}) {
 
-    /* navigation logic */
+    /* modal logic */
 
-    
+    const [showModal, setShowModal] = useState(false);
+    const [editingTodoId, setEditingTodoId] = useState(null);
+
 
     /* to-do logic */
 
     const [todos, setTodos] = useState([])
-    const [title, setTitle] = useState("")
+    const [newTodo, setNewTodo] = useState({
+        title: "",
+        course: "",
+        due_date: "",
+        estimated_time: ""
+    });
+
 
     useEffect(() => {
         fetchTodos();
     }, [])
 
-    async function addTodo() {
-        if (!title.trim()) return;
-        const {error} = await supabase.from("todos").insert([{title, completed: false, user_id: token.user.id}]);
-        if (error) console.error(error);
-        else {
-            setTitle("");
-            fetchTodos();
+    async function handleSubmit() {
+        if (!newTodo.title.trim()) return;
+    
+        if (editingTodoId) {
+            const { error } = await supabase
+                .from("todos")
+                .update({ ...newTodo })
+                .eq("id", editingTodoId);
+            if (error) console.error(error);
+        } else {
+            const { error } = await supabase.from("todos").insert([{
+                ...newTodo,
+                completed: false,
+                user_id: token.user.id
+            }]);
+            if (error) console.error(error);
         }
+    
+        setNewTodo({ title: "", course: "", due_date: "", estimated_time: "" });
+        setEditingTodoId(null);
+        setShowModal(false);
+        fetchTodos();
     }
+    
 
     async function fetchTodos() {
         const {data, error} = await supabase.from("todos").select("*").order("created_at", {ascending: true});
@@ -88,7 +112,17 @@ function Homepage({token}) {
                         <span>
                         <button onClick={() => completeTodo(todo.id)}><FaCheckCircle /></button>
                         <button onClick={() => deleteTodo(todo.id)}><BsFillTrashFill /></button>
-                        <button onClick={() => updateTodo(todo.id, prompt("New title:", todo.title))}><BsFillPencilFill /></button>
+                        <button onClick={() => {
+                            setNewTodo({
+                                title: todo.title,
+                                course: todo.course,
+                                due_date: todo.due_date,
+                                estimated_time: todo.estimated_time
+                            });
+                            setEditingTodoId(todo.id);
+                            setShowModal(true);
+                        }}><BsFillPencilFill /></button>
+
                         </span>
                     </td>
                     </tr>
@@ -96,8 +130,21 @@ function Homepage({token}) {
             </tbody>
         </table>
 
-        <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Add a new todo"/> 
-        <button onClick={addTodo}>Add</button>
+        <button onClick={() => {
+            setNewTodo({ title: "", course: "", due_date: "", estimated_time: "" });
+            setEditingTodoId(null);
+            setShowModal(true);
+        }}>
+            Add To-do
+        </button>
+
+        <Modal
+                show={showModal}
+                onClose={() => setShowModal(false)}
+                onSubmit={handleSubmit}
+                todo={newTodo}
+                setTodo={setNewTodo}
+            />
 
         <h2>Complete To-dos</h2>
         <table>        
