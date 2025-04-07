@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import './App.css'
 import { SignUp, Login, Homepage, Calendar, Courses, Plans } from './pages'
 import { Route, Routes } from 'react-router-dom'
 
