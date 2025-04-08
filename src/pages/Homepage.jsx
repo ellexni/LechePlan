@@ -55,7 +55,7 @@ function Homepage({token}) {
     
 
     async function fetchTodos() {
-        const {data, error} = await supabase.from("todos").select("*").order("created_at", {ascending: true});
+        const {data, error} = await supabase.from("todos").select("*").order("due_date", { ascending: true });
 
         if (error) console.error(error);
         else setTodos(data);
