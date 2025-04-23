@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { supabase } from '../client'
 import { Link, useNavigate } from 'react-router-dom'
+import "./Login.css"
 
 function Login({setToken}) {
 
@@ -41,7 +42,13 @@ function Login({setToken}) {
 
   return (
     <div>
+
+      <div className="image-section">
+        <img src="/src/assets/loginLogo.jpg" alt="Leche Plan Logo" />
+      </div>
+
       <form onSubmit={handleSubmit}>
+        <h2>Login</h2>
 
         <input 
           placeholder='Email'
@@ -59,9 +66,10 @@ function Login({setToken}) {
         <button type='submit'>
           Submit
         </button>
+        <p>Don't have an account?<Link to='/signup'> Signup</Link></p>
 
       </form>
-      Don't have an account? <Link to='/signup'>Signup</Link>
+      
     </div>
   )
 }

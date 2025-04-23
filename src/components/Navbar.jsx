@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
+import "./Navbar.css"
 
 function Navbar() {
 
@@ -12,6 +13,7 @@ function Navbar() {
 
     return (
     <nav className="nav">
+        <Link to="/homepage"><img src="/src/assets/logo.PNG" alt="Leche Plan Logo" /></Link>
         <Link to="/homepage">Homepage</Link>
         <Link to="/courses">Courses</Link>
         <Link to="/plans">Plans</Link>

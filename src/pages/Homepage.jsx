@@ -5,6 +5,7 @@ import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs"
 import { FaCheckCircle } from "react-icons/fa"; // if incomplete, show this
 import { FaCircleXmark } from "react-icons/fa6"; // if complete, show this
 import Modal from "../components/Modal";
+import "./Homepage.css"
 
 function Homepage({token}) {
 
@@ -83,13 +84,12 @@ function Homepage({token}) {
 
   return (
     
-    <div>
+    <div className="homepage-container">
 
         <Navbar />
 
         <h3>Welcome back, {token.user.user_metadata.full_name}</h3>
         
-
         <h2>Incomplete To-dos</h2>
         <table>        
             <thead>

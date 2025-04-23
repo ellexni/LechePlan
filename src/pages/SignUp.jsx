@@ -44,7 +44,13 @@ function SignUp() {
 
   return (
     <div>
+
+      <div className="image-section">
+        <img src="/src/assets/signupLogo.jpg" alt="Leche Plan Logo" />
+      </div>
+
       <form onSubmit={handleSubmit}>
+        <h2>Sign Up</h2>
         <input 
           placeholder='Fullname'
           name='fullName'
@@ -67,9 +73,9 @@ function SignUp() {
         <button type='submit'>
           Submit
         </button>
-
+        <p>Already have an account?  <Link to='/'>Login</Link></p>
       </form>
-      Already have an account?  <Link to='/'>Login</Link>
+      
     </div>
   )
 }

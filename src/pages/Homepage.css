@@ -1,0 +1,123 @@
+.homepage-container {
+    padding-top: 400px; /* Adjust based on your navbar's real height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+
+h2 {
+    color: #EF9730;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+h3 {
+    color: #EF9730;
+    text-align: center;
+    margin-top: 5rem;
+    font-size: 1.8rem;
+}
+
+table {
+    width: 80%;
+    margin: 1.5rem auto;
+    border-collapse: collapse;
+    background-color: #FFFAE6;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid #f1e8c4;
+}
+
+th {
+    background-color: #FCD38A;
+    color: #4B3200;
+    font-size: 1rem;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+td button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin: 0 0.3rem;
+    color: #EF9730;
+}
+
+td button:hover {
+    opacity: 0.6;
+    transform: scale(1.1);
+}
+
+button {
+    background-color: #EF9730;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    display: block;
+    margin: 2rem auto;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background-color: #e88700;
+    transform: translateY(-2px);
+}
+
+span {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    th {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        margin: 0 0 1rem 0;
+    }
+
+    td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    td:before {
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        transform: translateY(-50%);
+        white-space: nowrap;
+        font-weight: bold;
+        color: #EF9730;
+    }
+
+    td:nth-of-type(1):before { content: "Title"; }
+    td:nth-of-type(2):before { content: "Course"; }
+    td:nth-of-type(3):before { content: "Due"; }
+    td:nth-of-type(4):before { content: "Estimated"; }
+    td:nth-of-type(5):before { content: "Actions"; }
+}
